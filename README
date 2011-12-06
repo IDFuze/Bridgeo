@@ -1,1 +1,11 @@
-BRIDGEO V2
+== Welcome to Bridgeo V2
+
+A mongoDB CMS with an easy edit mode.
+
+== Features
+
+- Multi Languages
+- Multi Websites
+- Multi Users
+
+Note : MongoMapper is very slow
