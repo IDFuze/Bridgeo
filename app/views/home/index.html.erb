@@ -1,0 +1,14 @@
+<div id="page">
+  <h1>Bridgeo V2</h1>
+  <p>Bridgeo is a new CMS running on top of Ruby on Rails, mongoDB &amp; Redis</p>
+  
+  <h2>Sign In</h2>
+  <%= form_tag "/home/login", id: "signin" do  %>
+    <%= label_tag "login" %>
+    <%= text_field_tag "login", "", :placeholder => "John Doe." %>
+    <%= label_tag "password" %>
+    <%= password_field_tag "login", "", :placeholder => "My Secret Password" %>
+    <div class='ar'><%= submit_tag "Sign In", class: "button" %></div>
+  <%- end -%>
+  
+</div>
