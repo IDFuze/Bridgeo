@@ -16,3 +16,5 @@
 
 # MongoDB config
 /config/mongo.yml
+
+.sass-cache/*
