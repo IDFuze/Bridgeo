@@ -1,0 +1,17 @@
+development:
+  server: "localhost:27017"
+  database: "<your database>"
+  user: ""
+  pass: ""
+
+test:
+  server: "localhost:27017"
+  database: "<your database>"
+  user: ""
+  pass: ""
+  
+production:
+  server: [["mongo1.mongood.com", 27017], ["mongo2.mongood.com", 27017], ["mongo3.mongood.com", 27017]]
+  database: "<your database>"
+  user: "<your user>"
+  pass: "<your password>"
