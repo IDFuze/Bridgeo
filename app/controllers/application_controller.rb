@@ -9,13 +9,13 @@ private
   def load_db
     @db = $connection.db("bridgeo")
     @userdb = nil
-    if session[:uid]
-      account = @db.collection("accounts").find_one({ :_id => session[:uid] })
+    if account = @db.collection("accounts").find_one({ :host => request["HTTP_HOST"] })
+      Rails.logger.debug { "#{account.inspect}" }
       if Rails.env == "production"
-        $connection.add_auth(account.db, account.db_user, account.db_pass)
+        $connection.add_auth(account["db"], account["db_user"], account["db_pass"])
         $connection.apply_saved_authentication()
       end
-      @userdb = $connection.db(account.db)
+      @userdb = $connection.db(account["db"])
     end
   end
 end
