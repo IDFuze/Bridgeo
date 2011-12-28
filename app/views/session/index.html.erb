@@ -1,0 +1,93 @@
+<div id="background">
+  
+  
+</div>
+<div id="page">
+  <h1>Bridgeo V2</h1>
+  <p>Bridgeo is a new CMS running on top of Ruby on Rails, mongoDB &amp; Redis</p>
+  
+  <div id="f1">
+    <%= form_tag "/session/signin", id: "signin" do  %>
+      <%= label_tag "login" %>
+      <%= text_field_tag "signin[login]", "", :placeholder => "John Doe." %>
+      <%= label_tag "password" %>
+      <%= password_field_tag "signin[password]", "", :placeholder => "My Secret Password" %>
+      <div class='ar'><%= submit_tag "Sign In", class: "button" %></div>
+    <%- end -%>
+    <hr />
+    <%- if @account.nil? -%><div class='ar'><%= button_tag "Sign Up", class: "button signup" %></div><%- end -%>
+    <div class='ar'><%= button_tag "Lost Password?", class: "button lost_password" %></div>
+  </div>
+  <%- if @account.nil? -%>
+    <div id="f2">  
+      <%= form_tag "/session/signup", id: "signup" do  %>
+        <%= label_tag "name" %>
+        <%= text_field_tag "signup[name]", "", :placeholder => "John Doe." %>
+        <%= label_tag "email" %>
+        <%= text_field_tag "signup[email]", "", :placeholder => "john.doe@mail.com" %>
+        <%= label_tag "login" %>
+        <%= text_field_tag "signup[login]", "", :placeholder => "johndoe" %>
+        <%= label_tag "password" %>
+        <%= password_field_tag "signup[password]", "", :placeholder => "My Secret Password" %>
+        <%= label_tag "password confirmation" %>
+        <%= password_field_tag "signup[password_confirmation]", "", :placeholder => "Again, My Secret Password" %>
+        <hr />
+        <%= label_tag "DB Name" %>
+        <%= text_field_tag "signup[db]", "", :placeholder => "johndoe" %>
+        <%= label_tag "DB User" %>
+        <%= text_field_tag "signup[db_user]", "", :placeholder => "johndoe" %>
+        <%= label_tag "DB password" %>
+        <%= text_field_tag "signup[db_pass]", "", :placeholder => "Database password" %>
+    
+        <div class='ar'><%= submit_tag "Sign Up", class: "button" %></div>
+      <%- end -%>
+      <hr />
+      <div class='ar'><%= button_tag "Sign In", class: "button signin" %></div>
+      <div class='ar'><%= button_tag "Lost Password?", class: "button lost_password" %></div>
+    </div>
+  <%- end -%>
+  <div id="f3"> 
+    <%= form_tag "/session/lost_password" do  %>
+      <%= label_tag "email" %>
+      <%= text_field_tag "lost_password[email]", "", :placeholder => "john.doe@mail.com" %>
+      <div class='ar'><%= submit_tag "Send", class: "button" %></div>
+    <%- end -%>
+    <hr />
+    <div class='ar'><%= button_tag "Sign In", class: "button signin" %></div>
+    <%- if @account.nil? -%><div class='ar'><%= button_tag "Sign Up", class: "button signup" %></div><%- end -%>
+  </div>
+  <hr />
+  
+</div>
+<%= javascript_tag do %>
+  $(function() {
+    $("#f2").hide();
+    $("#f3").hide();
+    $(".signup").click(function() {
+      $("#f3").hide();$("#f1").hide();
+      $("#f2").fadeIn();
+    });
+    $(".signin").click(function() {
+      $("#f3").hide();$("#f2").hide();  
+      $("#f1").fadeIn();
+    });
+    $(".lost_password").click(function() {
+      $("#f1").hide();$("#f2").hide();  
+      $("#f3").fadeIn();
+    });
+    var f1 = new LiveValidation('signin_login');f1.add( Validate.Presence );
+    var f2 = new LiveValidation('signin_password');f2.add( Validate.Presence );
+    
+    var f3 = new LiveValidation('signup_name');f3.add( Validate.Presence );
+    var f4 = new LiveValidation('signup_email');f4.add( Validate.Presence );f4.add( Validate.Email );
+    var f5 = new LiveValidation('signup_login');f5.add( Validate.Presence );f5.add( Validate.Length, { minimum: 4 } );
+    var f6 = new LiveValidation('signup_password');f6.add( Validate.Presence );f6.add( Validate.Length, { minimum: 6 } );
+    var f7 = new LiveValidation('signup_password_confirmation');f7.add( Validate.Confirmation, { match: 'signup_password' } );
+    var f8 = new LiveValidation('signup_db');f8.add( Validate.Presence );
+    var f9 = new LiveValidation('signup_db_user');f9.add( Validate.Presence );
+    var f10 = new LiveValidation('signup_db_pass');f10.add( Validate.Presence );
+    
+    var f11 = new LiveValidation('lost_password_email');f11.add( Validate.Presence );f11.add( Validate.Email );
+  })
+  
+<% end %>

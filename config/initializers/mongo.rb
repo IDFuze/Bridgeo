@@ -1,4 +1,3 @@
-
 $connection = nil
 
 config_file = "#{Rails.root}/config/mongo.yml"
@@ -14,4 +13,3 @@ if File.exists? config_file
     $connection.apply_saved_authentication()
   end
 end
-

@@ -14,16 +14,13 @@ V2Bridgeo::Application.routes.draw do
   #   resources :products
 
   # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  resources :session, :except => [:new, :edit, :show, :destroy, :update, :create] do
+    collection do
+      post 'signin'
+      post 'signup'
+      post 'lost_password'
+    end
+  end
 
   # Sample resource route with sub-resources:
   #   resources :products do
@@ -49,7 +46,7 @@ V2Bridgeo::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
    root :to => 'home#index'
-
+   
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
