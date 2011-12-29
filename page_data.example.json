@@ -11,6 +11,12 @@
     d: 'My beautiful Home Page', # Description
     k: 'beautiful, home, page' # Keywords
   },
+  layout: "layout1", # Set the layout used
+  extra_headers: {
+    html: '<meta charset="utf-8">', # add any header HTML code if needed
+    js: "// some js here", # add JS content
+    css: "body { margin: 0; }" # add custom CSS rules
+  },
   zones: {
     'z1': {
       o: [ 'w1', 'sz1', 'sz2' ], #Widget or Sub Zone Order
