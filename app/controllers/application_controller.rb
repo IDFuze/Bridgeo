@@ -7,15 +7,16 @@ private
   end
   
   def load_db
-    @db = $connection.db("bridgeo")
+    @bdb = $connection.db("bridgeo")
     @userdb = nil
-    if account = @db.collection("accounts").find_one({ :host => request["HTTP_HOST"] })
-      Rails.logger.debug { "#{account.inspect}" }
+    @host = request.env["HTTP_HOST"].split(".")[-2..-1].join(".")
+
+    if @account = @bdb.collection("accounts").find_one({ :host => @host })
       if Rails.env == "production"
         $connection.add_auth(account["db"], account["db_user"], account["db_pass"])
         $connection.apply_saved_authentication()
       end
-      @userdb = $connection.db(account["db"])
+      @db = $connection.db(@account["db"])
     end
   end
 end

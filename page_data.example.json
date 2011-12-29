@@ -1,0 +1,61 @@
+# all items can be called with the path
+# Ex: 
+# /home/page.html>z1>sz2>w1
+# /home/page.html>z1>sz1>w2
+# /home/page.html>z1>sz2
+# etc ... 
+# A document can have multiples zones ... and display item from another page
+{
+  url: '/home/page.html',
+  metas: {
+    d: 'My beautiful Home Page', # Description
+    k: 'beautiful, home, page' # Keywords
+  },
+  zones: {
+    'z1': {
+      o: [ 'w1', 'sz1', 'sz2' ], #Widget or Sub Zone Order
+      'w1': {
+        type: 'paragraph',
+        data: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        opts: {
+          s: '',  # style
+          c: '',  # class
+          i: ''   # id
+        }
+      }, # end of z1#w1
+      'sz1': {
+        o: [ 'w1', 'w2' ]
+        c: 'span6', # Class
+        i: '', #ID
+        'w1': {
+          type: 'paragraph',
+          data: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          opts: { s: '', c: '', i: '' }
+        }, # end of sz1#w1
+        'w2': {
+          type: 'image',
+          src: 'http://idfuze.com/assets/29/img/logo.png',
+          opts: { s: '', c: '', i: '' }
+        } # end of sz1#w2
+      }, # end of sz1
+      'sz2': {
+        o: [ 'w1', 'w2' ],
+        c: 'span6 last',
+        i: '',
+        'w1': {
+          type: 'custom1',
+          data: [
+            { src: 'http://idfuze.com/assets/29/img/logo.png', title: 'My Title', text: 'Some Text' },
+            { src: 'http://idfuze.com/assets/29/img/logo2.png', title: 'My Title2', text: 'Some Text2' }
+          ],
+          opts: { s: '', c: '', i: '' }
+        }, # end of sz2#w1
+        'w2': {
+          path: '/home/page.html>z1>sz1', # Load the data from the same document or an another one ...
+          opts: { s: '', c: '', i: '' }
+        } # end of sz2#w2
+      } # end of sz2
+    } # end of Z1
+  } # end of zones
+}
+

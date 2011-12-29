@@ -2,14 +2,13 @@ class SessionController < ApplicationController
   
   def index
     #redirect_to :root
-    @account = @db.collection("accounts").find_one({ host: request.env["SERVER_NAME"] })
+    @account = @bdb.collection("accounts").find_one({ host: @host })
   end
   
   def signin
-    account = @userdb.collection("accounts").find_one({ host: request.env["SERVER_NAME"] })
-    Rails.logger.debug { " ACCOUNT: #{account.inspect}" }
+    account = @db.collection("accounts").find_one({ host: @host })
     if account.nil?
-      bridgeo_account = @db.collection("accounts").find_one({ host: request.env["SERVER_NAME"] })
+      bridgeo_account = @bdb.collection("accounts").find_one({ host: @host })
       unless bridgeo_account.nil?
         # create first user if needed
         account = {}
@@ -18,7 +17,7 @@ class SessionController < ApplicationController
         account[:login] = bridgeo_account[:login]
         account[:pass] = bridgeo_account[:pass]
         account[:roles] = ["admin"]
-        account = @userdb.collection("accounts").insert(account)
+        account = @db.collection("accounts").insert(account)
         session[:uid] = account
       end
     else
@@ -29,8 +28,8 @@ class SessionController < ApplicationController
   end
   
   def signup
-    host = request.env["SERVER_NAME"]
-    account = @db.collection("accounts").find_one({ host: host })
+    
+    account = @bdb.collection("accounts").find_one({ host: @host })
     if account.nil?
       # create the account
       account = {}
@@ -42,7 +41,7 @@ class SessionController < ApplicationController
       account[:db] = params[:signup][:db]
       account[:db_user] = params[:signup][:db_user]
       account[:db_pass] = params[:signup][:db_pass]
-      @db.collection("accounts").insert(account)
+      @bdb.collection("accounts").insert(account)
     end
     
     redirect_to :root

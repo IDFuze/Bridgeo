@@ -11,7 +11,7 @@
 
 <%= yield %>
 <%- if Rails.env == "development" %>
-  <%= request.env["HTTP_HOST"] %>
+  <%= @host %>
 <%- end -%>
 </body>
 </html>
