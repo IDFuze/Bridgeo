@@ -19,6 +19,7 @@ V2Bridgeo::Application.routes.draw do
       post 'signin'
       post 'signup'
       post 'lost_password'
+      get 'logout'
     end
   end
 
