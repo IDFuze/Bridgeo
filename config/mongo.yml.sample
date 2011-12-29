@@ -1,11 +1,11 @@
 development:
-  server: "localhost:27017"
+  server: "localhost"
   database: "<your database>"
   user: ""
   pass: ""
 
 test:
-  server: "localhost:27017"
+  server: "localhost"
   database: "<your database>"
   user: ""
   pass: ""
