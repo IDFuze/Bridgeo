@@ -50,7 +50,7 @@ class HomeController < ApplicationController
     @js = ""
     @layout["css"].each do |css|
       css.each do |k, v|
-        if params[:refresh_assets]
+        if true || params[:refresh_assets]
           File.open("#{Rails.root}/public/private/#{@account["_id"]}/#{k.gsub("-css", ".css")}", "w") do |f|
             f.write v
           end
@@ -60,7 +60,7 @@ class HomeController < ApplicationController
     end
     @layout["js"].each do |css|
       css.each do |k, v|
-        if params[:refresh_assets]
+        if true || params[:refresh_assets]
           File.open("#{Rails.root}/public/private/#{@account["_id"]}/#{k.gsub("-js", ".js")}", "w") do |f|
             f.write v
           end
