@@ -18,3 +18,4 @@
 /config/mongo.yml
 
 .sass-cache/*
+/public/private

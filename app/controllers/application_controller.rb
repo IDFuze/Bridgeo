@@ -12,12 +12,15 @@ private
     @userdb = nil
     @host = request.env["HTTP_HOST"].split(".")[-2..-1].join(".")
     Rails.logger.debug { "Host: #{@host}" }
-    if @account = @bdb.collection("accounts").find_one({ :host => @host })
+    if @baccount = @bdb.collection("accounts").find_one({ :host => @host })
       if Rails.env == "production"
         $connection.add_auth(account["db"], account["db_user"], account["db_pass"])
         $connection.apply_saved_authentication()
       end
-      @db = $connection.db(@account["db"])
+      @db = $connection.db(@baccount["db"])
+    end
+    if session[:uid]
+      @account = @db.collection("accounts").find_one({ :_id => session[:uid] })
     end
   end
 end

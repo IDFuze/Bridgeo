@@ -9,6 +9,8 @@ gem 'rails', '3.1.3'
 gem 'mongo'
 gem 'redis'
 gem 'hiredis'
+gem 'haml'
+
 #gem 'mongodb_model'
 gem 'bson'
 gem 'bson_ext'

@@ -51,6 +51,7 @@ GEM
     erubis (2.7.0)
     execjs (1.2.11)
       multi_json (~> 1.0)
+    haml (3.1.4)
     highline (1.6.8)
     hike (1.2.1)
     hiredis (0.4.3)
@@ -141,6 +142,7 @@ DEPENDENCIES
   bson_ext
   capistrano
   coffee-rails (~> 3.1.1)
+  haml
   hiredis
   jquery-rails
   mongo
