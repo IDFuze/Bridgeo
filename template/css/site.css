@@ -1,0 +1,8 @@
+body { padding-top: 50px; background: #FCFCFC url(../img/fd.jpg) top left repeat-x;}
+.white { background: #fcfcfc; }
+.ac { text-align: center; }
+.aj { text-align: justify; }
+.al { text-align: left; }
+.ar { text-align: right; }
+.b { font-weight: bold; }
+.btn.vsmall{padding:3px 5px 3px;font-size:11px;margin: 0 2px;}

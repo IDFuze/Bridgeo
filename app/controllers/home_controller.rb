@@ -3,17 +3,27 @@ class HomeController < ApplicationController
   layout nil
   
   def index
-    unless @db.collection("layouts").find_one().nil?
-      # If there is no layout then create a new one
+    if @db.collection("layouts").find_one().nil?
+      # If there is no layout then create a new one from the template
       l = {}
+      l["js"] = []
+      l["css"] = []
       l["name"] = "website"
-      l["html"] = "<!DOCTYPE html><html><head></head><body></body></html>"
-      l["js"] = [{ "jquery" => "" }, { "somethingelse" => "" }]
+      Dir.entries("#{Rails.root}/template/js/").each do |file|
+        unless [".", ".."].include? file
+          l["js"] << { "#{file.gsub(".","-")}" => "#{IO.read("#{Rails.root}/template/js/#{file}")}" }
+        end
+      end
+      Dir.entries("#{Rails.root}/template/css/").each do |file|
+        unless [".", ".."].include? file
+          l["css"] << { "#{file.gsub(".","-")}" => "#{IO.read("#{Rails.root}/template/css/#{file}")}" }
+        end
+      end
+      l["html"] = IO.read("#{Rails.root}/template/index.html")
       @db.collection("layouts").save(l)
       # If there is no page then create a new one with default layout
-      page = {}
-      page["url"] = "/index.html"
-      page["metas"] = { :d => "Home page", :k => "home, page" }
+      page = YAML::load(IO.read("#{Rails.root}/template/data.yml"))
+      @db.collection("pages").save(page)
       # Save first page in Account model
       @account["first_page"] = "/index.html"
       @bdb.collection("accounts").save(@account)
