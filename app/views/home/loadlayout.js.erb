@@ -1,10 +1,10 @@
 $("head").append("<%= raw (@css + @js) %>");
+$("head").append("<script type='text/javascript'>var page='<%= params[:id] %>';</script>");
+
 $.get("/home/loadpage/<%= params[:id] %>", function(data) {
-  console.log(data);
   _.each(data.zones, function(v, k) {
     _.each(v.o, function(o) {
-      console.log(Mustache.to_html(v[o].template, v[o].view));
-      $("#" + k).append(Mustache.to_html(v[o].template, v[o].view));
+      $("#" + k).append("<div data-type='"+v[o].type+"' class='b-widget' id='"+k+"-"+o+"'>" + Mustache.to_html(v[o].template, v[o].view) + "</div>");
     });
   })
 })

@@ -48,6 +48,7 @@ V2Bridgeo::Application.routes.draw do
   # just remember to delete public/index.html.
   match '/home/loadpage/(:id)' => 'home#loadpage'
   match '/home/loadlayout/(:id)' => 'home#loadlayout'
+  match '/home/getcontextmenu/(:id)' => 'home#getcontextmenu'
   match ':id.html' => "home#show"
   root :to => 'home#index'
    

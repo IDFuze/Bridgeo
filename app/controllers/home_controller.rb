@@ -78,4 +78,11 @@ class HomeController < ApplicationController
     @page = @db.collection("pages").find_one({ :url => "/#{params[:id]}.html" })
     render :json => @page.to_json
   end
+  
+  def getcontextmenu
+    params[:page] ||= "index"
+    @page = @db.collection("pages").find_one({ :url => "/#{params[:id]}.html" })
+  end
+  
+  
 end

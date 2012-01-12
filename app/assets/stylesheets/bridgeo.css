@@ -1,0 +1,32 @@
+.bridgeo-hover {
+  outline: 0;
+  border-color: rgba(82, 168, 236, 0.8);
+  -webkit-box-shadow: inset 0 1px 13px rgba(0, 0, 0, 0.1), 0 0 18px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 13px rgba(0, 0, 0, 0.1), 0 0 18px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 13px rgba(0, 0, 0, 0.1), 0 0 18px rgba(82, 168, 236, 0.6);
+}
+.clear { clear: both; }
+.b-widget-edit, .b-main-menu { 
+  background: #000; padding: 5px; border-radius: 5px; color: white; 
+  position: fixed;
+  top: 100px;
+  text-align: center;
+  -webkit-box-shadow: inset 0 1px 13px rgba(0, 0, 0, 0.1), 0 0 18px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 13px rgba(0, 0, 0, 0.1), 0 0 18px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 13px rgba(0, 0, 0, 0.1), 0 0 18px rgba(82, 168, 236, 0.6);
+}
+.b-widget-edit { left: 5px; }
+.b-main-menu { right: 5px; }
+
+.b-menu hr { margin: 5px 0; }
+.b-menu a { color: yellow; }
+.b-menu a:hover { color: orange; }
+.b-editor { }
+#b-contextmenu { 
+  display: none; position: absolute; z-index: 1000; background: #000; padding: 5px; color: #fff; 
+  -webkit-box-shadow: 0 0 18px #444;
+  -moz-box-shadow: 0 0 18px #444;
+  box-shadow: 0 0 18px #444;
+}
+.b-menu a { color: yellow; }
+.b-menu a:hover { color: orange; }
