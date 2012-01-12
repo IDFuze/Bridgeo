@@ -44,7 +44,8 @@ class HomeController < ApplicationController
     params[:id] ||= "index"
     @page = @db.collection("pages").find_one({ :url => "/#{params[:id]}.html" })
     @layout = @db.collection("layouts").find_one({ :name => @page["layout"] })
-    # Create files in /private/ID/ if needed
+    # Create files in /private/ID/ if needez
+    Dir.mkdir("#{Rails.root}/public/private/") rescue nil
     Dir.mkdir("#{Rails.root}/public/private/#{@account["_id"]}") rescue nil
     @css = ""
     @js = ""
